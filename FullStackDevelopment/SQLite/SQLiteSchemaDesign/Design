@@ -1,0 +1,29 @@
+-- User table
+CREATE TABLE User (
+    user_id INTEGER PRIMARY KEY,
+    username TEXT,
+    age INTEGER,
+    gender TEXT,
+    account_created DATETIME
+);
+
+-- Post table
+CREATE TABLE Post (
+    post_id INTEGER PRIMARY KEY,
+    title TEXT,
+    post_content TEXT,
+    author_id INTEGER,
+    post_created DATETIME,
+    FOREIGN KEY (author_id) REFERENCES User(user_id)
+);
+
+-- Comment table
+CREATE TABLE Comment (
+    comment_id INTEGER PRIMARY KEY,
+    comment_content TEXT,
+    author_id INTEGER,
+    post_id INTEGER,
+    comment_created DATETIME,
+    FOREIGN KEY (author_id) REFERENCES User(user_id),
+    FOREIGN KEY (post_id) REFERENCES Post(post_id)
+);
